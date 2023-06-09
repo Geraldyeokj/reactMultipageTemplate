@@ -1,27 +1,27 @@
 import React from "react";
 import { Nav, NavLink, NavMenu }
 	from "./NavbarElements";
+import { NavLink as Link } from "react-router-dom";
 
 const Navbar = () => {
 	return (
-		<>
-			<Nav>
-				<NavMenu>
-					<NavLink to="/about" activeStyle>
-						About
-					</NavLink>
-					<NavLink to="/contact" activeStyle>
-						Contact Us
-					</NavLink>
-					<NavLink to="/blogs" activeStyle>
-						Blogs
-					</NavLink>
-					<NavLink to="/sign-up" activeStyle>
-						Sign Up
-					</NavLink>
-				</NavMenu>
-			</Nav>
-		</>
+		<div className="flex py-3 px-3">
+            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/">
+                <span>Home</span>
+            </Link>
+            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/landingpage">
+                <span>Landing Page</span>
+            </Link>
+            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/contact">
+                <span>Contact us</span>
+            </Link>
+            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/blogs">
+                <span>Blogs</span>
+            </Link>
+            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/sign-up">
+                <span>Sign up</span>
+            </Link>
+        </div> 
 	);
 };
 
