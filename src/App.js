@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
 import Home from './pages';
-import LandingPage from './pages/landingpage';
+import Assets from './pages/assets';
 import Blogs from './pages/blogs';
 import SignUp from './pages/signup';
 import 'antd/dist/reset.css';
 import AssetTransfer from './pages/assetTransfer';
- 
+import AssetDetails from './components/Assets/AssetDetails';
+import { NotificationWrapper } from './components/Notification/NotificationWrapper';
+
 function App() {
     return (
         <Router>
+            <NotificationWrapper/>
             <Navbar />
             <Routes>
                 <Route exact path='/' exact element={<Home />} />
-                <Route path='/landingpage' element={<LandingPage />} />
+                <Route path='/assets' element={<Assets />} />
+                <Route path="/assets/:id" element={<AssetDetails /> } />
                 <Route path='/assetTransfer' element={<AssetTransfer />} />
                 <Route path='/blogs' element={<Blogs />} />
                 <Route path='/sign-up' element={<SignUp />} />

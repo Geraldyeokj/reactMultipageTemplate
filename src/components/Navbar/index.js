@@ -9,7 +9,7 @@ const Navbar = () => {
             <Link className="text-slate-700 hover:text-sky-700 px-3" to="/">
                 <span>Home</span>
             </Link>
-            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/landingpage">
+            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/assets">
                 <span>Landing Page</span>
             </Link>
             <Link className="text-slate-700 hover:text-sky-700 px-3" to="/assetTransfer">

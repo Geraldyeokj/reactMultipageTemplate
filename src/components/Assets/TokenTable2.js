@@ -1,14 +1,12 @@
 import { Table } from 'antd';
-import { useLocation, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
-import { AssetRedirect } from './AssetRedirect';
-
+import { useNavigate } from 'react-router-dom';
 
 const columns = [
 {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+    fixed: 'left',
 },
 {
     title: 'Quantity',
@@ -53,13 +51,13 @@ const data = [
 ];
 
 
-const TokenTable2 = (w_size) => {
+const TokenTable2 = (props) => {
     const navigate = useNavigate();
-    console.log("test321");
+    console.log("test321", props, props.w_size);
     return (<Table
         columns={columns}
         dataSource={data}
-        scroll={w_size}
+        scroll={{ x : props.w_size }}
         onRow={(record, rowIndex) => {
             return {
                 onClick: () => {
