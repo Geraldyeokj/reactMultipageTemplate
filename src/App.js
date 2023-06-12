@@ -8,9 +8,8 @@ import Home from './pages';
 import LandingPage from './pages/landingpage';
 import Blogs from './pages/blogs';
 import SignUp from './pages/signup';
-import Contact from './pages/contact';
-
 import 'antd/dist/reset.css';
+import AssetTransfer from './pages/assetTransfer';
  
 function App() {
     return (
@@ -19,7 +18,7 @@ function App() {
             <Routes>
                 <Route exact path='/' exact element={<Home />} />
                 <Route path='/landingpage' element={<LandingPage />} />
-                <Route path='/contact' element={<Contact />} />
+                <Route path='/assetTransfer' element={<AssetTransfer />} />
                 <Route path='/blogs' element={<Blogs />} />
                 <Route path='/sign-up' element={<SignUp />} />
             </Routes>

@@ -12,7 +12,7 @@ const Navbar = () => {
             <Link className="text-slate-700 hover:text-sky-700 px-3" to="/landingpage">
                 <span>Landing Page</span>
             </Link>
-            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/contact">
+            <Link className="text-slate-700 hover:text-sky-700 px-3" to="/assetTransfer">
                 <span>Contact us</span>
             </Link>
             <Link className="text-slate-700 hover:text-sky-700 px-3" to="/blogs">

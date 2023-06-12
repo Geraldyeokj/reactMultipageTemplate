@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "../components/Content/Title";
 import AssetDisplay from "../components/LandingPage/AssetDisplay";
+import CreateNotification from "../components/Notification/CreateNotification";
 
 const LandingPage = () => {
 	return (
