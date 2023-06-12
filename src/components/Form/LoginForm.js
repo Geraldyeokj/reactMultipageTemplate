@@ -1,6 +1,7 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { assetsLink } from "../../util/internalLinks";
 
 
 function onFinish (values) {
@@ -27,13 +28,13 @@ function LoginForm() {
 
     useEffect(() => {
         if (redirectLanding) {
-            navigate("/landingpage");
+            navigate(assetsLink);
         };
     });
     
     return (
         <Form 
-            className='flex flex-col justify-center w-1/2 pt-10'
+            className='flex flex-col justify-center sm:w-1/2 md:w-9/12 w-1/2 pt-10'
             name="basic"
             labelCol={{
             span: 5,

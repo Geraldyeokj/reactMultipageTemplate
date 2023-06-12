@@ -3,7 +3,7 @@ import Title from "../components/Content/Title";
 import AssetDisplay from "../components/Assets/AssetDisplay";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { authenticationSimulator } from "../components/Authentication/AuthenticationSimulator";
+import { authenticationSimulator } from "../util/Authentication/authenticationSimulator";
 
 const Assets = () => {
 	const navigate = useNavigate();

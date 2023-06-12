@@ -10,6 +10,8 @@ import 'antd/dist/reset.css';
 import AssetTransfer from './pages/assetTransfer';
 import AssetDetails from './components/Assets/AssetDetails';
 import { NotificationWrapper } from './components/Notification/NotificationWrapper';
+import { assetsLink } from "./util/internalLinks";
+
 
 function App() {
     return (
@@ -18,7 +20,7 @@ function App() {
             <Navbar />
             <Routes>
                 <Route exact path='/' exact element={<Home />} />
-                <Route path='/assets' element={<Assets />} />
+                <Route path={assetsLink} element={<Assets />} />
                 <Route path="/assets/:id" element={<AssetDetails /> } />
                 <Route path='/assetTransfer' element={<AssetTransfer />} />
                 <Route path='/blogs' element={<Blogs />} />

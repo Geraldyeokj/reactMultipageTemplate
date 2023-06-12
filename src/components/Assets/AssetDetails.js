@@ -1,13 +1,14 @@
 import React from "react";
 import Title from "../../components/Content/Title";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { authenticationSimulator } from "../../components/Authentication/AuthenticationSimulator";
+import { authenticationSimulator } from "../../util/Authentication/authenticationSimulator";
 
 const AssetDetails = () => {
 	const navigate = useNavigate();
     const loggedIn = authenticationSimulator();
-    console.log("asset details called")
+    const params = useParams();
+    console.log("asset details called", params)
 
     useEffect(() => {
         console.log("useEffect start", loggedIn)
@@ -28,7 +29,7 @@ const AssetDetails = () => {
 			{loggedIn ?
 			<div className='flex flex-col justify-center'>
 			<div className='flex flex-col justify-center items-center py-10'>
-				<Title title="Transfer" moreClasses="text-center"/>
+				<Title title={`Transfer ${params.id}`} moreClasses="text-center"/>
 			</div>
 			</div>:
 			<div></div>

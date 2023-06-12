@@ -10,7 +10,7 @@ const Home = (props) => {
 	return (
 		<div className='flex flex-col justify-center'>
             <div className='flex flex-col justify-center items-center py-10'>
-                <Title title="Welcome to Symphony" moreClasses="text-center"/>
+                <Title title="Welcome to SymLink" moreClasses="text-center"/>
                 <LoginForm/>
             </div>
 		</div>
