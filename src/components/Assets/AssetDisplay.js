@@ -5,6 +5,7 @@ import TokenTable2 from "./TokenTable2";
 import NftTable from "./NftTable";
 import { authenticationSimulator } from "../../util/Authentication/authenticationSimulator";
 import TokenTable3 from "./TokenTable3";
+import NftTable2 from "./NftTable2";
 
 export default function AssetDisplay() {
     const [assetView, setAssetView] = useState(false);
@@ -40,7 +41,8 @@ export default function AssetDisplay() {
                     </div>
                     {assetView ? 
                     <div className="flex justify-center flex-col mt-5 outline outline-slate-500 outline-1 rounded-lg">
-                        <NftTable/>
+                        {/* <NftTable/> */}
+                        <NftTable2 w_size={window_width/2}/>
                     </div>:
                     <div className="flex justify-center flex-col mt-5 outline outline-slate-500 outline-1 rounded-lg">
                         {/* <TokenTable2 w_size={window_width/2}/> */}

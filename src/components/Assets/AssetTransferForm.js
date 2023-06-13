@@ -1,13 +1,14 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { assetsLink } from "../../util/internalLinks";
+import { authenticationSimulator } from "../../util/Authentication/authenticationSimulator"
+import { transferConfirmationLink } from '../../util/internalLinks';
 
 
 function onFinish (values) {
     //INSERT API LOG IN AUTHENTICATION CALL
     
-    if (values.orgID === "geraldyeo") {
+    if (authenticationSimulator()) {
         console.log('Success:', values);
         return true;
     } else {
@@ -21,14 +22,25 @@ const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 
-function LoginForm() {
+function AssetTransfer(props) {
+    const [userAddress, setUserAddress] = useState(props?.userAddress ?? "")
+    const [recipientAddress, setRecipientAddress] = useState(props?.recipientAddress ?? "")
+    const [amountToSend, setAmountToSend] = useState(props?.amountToSend ?? "")
 
     const [redirectLanding, setRedirectLanding] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log(userAddress)
         if (redirectLanding) {
-            navigate(assetsLink);
+            navigate(transferConfirmationLink, {
+                state: {
+                    userAddress : userAddress,
+                    recipientAddress : recipientAddress,
+                    amountToSend : amountToSend,
+                    assetToSend : props?.assetToSend,
+                },
+            });
         };
     });
     
@@ -58,42 +70,42 @@ function LoginForm() {
             autoComplete="off"
         >
             <Form.Item
-            label="Org ID"
-            name="orgID"
+            label="From"
+            name="from"
             rules={[
                 {
                 required: true,
-                message: 'Please input your Organization ID!',
+                message: 'Your Address.',
                 },
             ]}
             >
-            <Input />
+            <Input value={userAddress} onInput={e => setUserAddress(e.target.value)}/>
             </Form.Item>
 
             <Form.Item
-            label="User ID"
-            name="userID"
+            label="To"
+            name="to"
             rules={[
                 {
                 required: true,
-                message: 'Please input your User ID!',
+                message: "Recipient's Address.",
                 },
             ]}
             >
-            <Input />
+            <Input value={recipientAddress} onInput={e => setRecipientAddress(e.target.value)}/>
             </Form.Item>
 
             <Form.Item
-            label="Password"
-            name="password"
+            label="Amount"
+            name="amount"
             rules={[
                 {
                 required: true,
-                message: 'Please input your password!',
+                message: "Amount to Transfer.",
                 },
             ]}
             >
-            <Input.Password />
+            <Input value={amountToSend} onInput={e => setAmountToSend(e.target.value)}/>
             </Form.Item>
 
             <Form.Item
@@ -101,23 +113,23 @@ function LoginForm() {
             valuePropName="checked"
             wrapperCol={{
                 offset: 5,
-                span: 10,
+                span: 0,
             }}
             >
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>I accept the <a className='text-blue-500'>Terms and Conditions</a></Checkbox>
             </Form.Item>
 
             <Form.Item
             wrapperCol={{
                 offset: 5,
-                span: 10,
+                span: 0,
             }}
             >
             <Button className="bg-blue-600" type="primary" htmlType="submit">
-                Submit
+                Send
             </Button>
             </Form.Item>
         </Form>
     );
 };
-export default LoginForm;
+export default AssetTransfer;

@@ -1,4 +1,4 @@
-export function getTokenByUID (uid) {
+export function getAssetInfoByUID (uid) {
     // IMPLEMENT REAL API CALL HERE:
     const fakeDatabase = {
         UID_1 : {
@@ -16,6 +16,22 @@ export function getTokenByUID (uid) {
         UID_4 : {
             name: "S&P -500",
             price: 97.10
+        },
+        NFT_1 : {
+            name: "NFT 1",
+            price: 9127.32
+        },
+        NFT_2 : {
+            name: "NFT 2",
+            price: 1102.12
+        },
+        NFT_3 : {
+            name: "NFT 3",
+            price: 712.35
+        },
+        NFT_4 : {
+            name: "NFT 4",
+            price: 917.10
         },
     };
     return fakeDatabase[uid];

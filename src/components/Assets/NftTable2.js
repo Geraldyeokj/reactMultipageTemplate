@@ -1,9 +1,8 @@
 import { Table } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { getClientHoldingsByID } from '../../util/getClientHoldingsByID';
-import { getAssetInfoByUID } from '../../util/getAssetInfoByUID';
 import { clientIDSimulator } from '../../util/Authentication/clientIdSimulator';
-
+import { getAssetInfoByUID } from '../../util/getAssetInfoByUID';
 
 const columns = [
 {
@@ -25,10 +24,10 @@ const columns = [
 ];
 
 
-const TokenTable3 = (props) => {
+const NftTable2 = (props) => {
     const clientID = clientIDSimulator()
     var holdings = getClientHoldingsByID(clientID)
-    holdings = holdings.filter((ele) => ele.type === "token")
+    holdings = holdings.filter((ele) => ele.type === "nft")
     const dataArray = holdings.map((ele, ind) => {
         console.log("map test", ele.id,  getAssetInfoByUID(ele.id))
         const entry = {
@@ -57,4 +56,4 @@ const TokenTable3 = (props) => {
         }}
     />);
     };
-export default TokenTable3;
+export default NftTable2;

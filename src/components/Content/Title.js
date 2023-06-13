@@ -2,7 +2,7 @@ import React from "react";
 
 const Title = (props) => {
 	return (
-		<div className={`sm:text-2xl md:text-3xl ${props.moreClasses}`}>
+		<div className={`sm:text-3xl md:text-3xl 3-xl ${props.moreClasses}`}>
             {props.title}
         </div>
 	);

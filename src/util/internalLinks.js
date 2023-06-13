@@ -1,3 +1,5 @@
 const assetsLink = "/assets"
+const transferConfirmationLink = "/transferconfirmation"
+const transferSuccessLink = "/transfersuccess"
 
-export { assetsLink };
+export { assetsLink, transferConfirmationLink, transferSuccessLink };

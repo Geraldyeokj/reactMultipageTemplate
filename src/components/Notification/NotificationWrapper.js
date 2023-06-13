@@ -18,8 +18,28 @@ export function NotificationWrapper() {
                 progress: undefined,
                 theme: "light",
                 });
-        } else if (locationState?.state?.notificationType === "danger") {
-
+        } else if (locationState?.state?.notificationType === "error") {
+            toast.warn(locationState?.state?.notificationMessage, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        } else if (locationState?.state?.notificationType === "success") {
+            toast.success(locationState?.state?.notificationMessage, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         
     }
