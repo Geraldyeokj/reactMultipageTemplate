@@ -19,7 +19,7 @@ export function NotificationWrapper() {
                 theme: "light",
                 });
         } else if (locationState?.state?.notificationType === "error") {
-            toast.warn(locationState?.state?.notificationMessage, {
+            toast.error(locationState?.state?.notificationMessage, {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,

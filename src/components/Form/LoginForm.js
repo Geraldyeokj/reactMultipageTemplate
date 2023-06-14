@@ -1,36 +1,43 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { assetsLink } from "../../util/internalLinks";
+import { twoFactorAuthLink } from "../../util/internalLinks";
+import { loginLink } from '../../util/internalLinks';
+import verifyLogin from '../../util/Authentication/verifyLogin';
 
 
-function onFinish (values) {
-    //INSERT API LOG IN AUTHENTICATION CALL
-    
-    if (values.orgID === "geraldyeo") {
-        console.log('Success:', values);
-        return true;
-    } else {
-        onFinishFailed("Incorrect Log In Information.");
-        return false
-    }
-
-};
-
-const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo);
+const onFinishFailed = (navigate) => {
+    navigate(loginLink, { 
+        state: { 
+            notificationMessage : "Log In Details Incorrect",
+            notificationType : "error",
+            notificationPresent : true,
+        }
+    });
 };
 
 function LoginForm() {
 
-    const [redirectLanding, setRedirectLanding] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (redirectLanding) {
-            navigate(assetsLink);
-        };
-    });
+    function onFinish (navigate, loginInfo) {
+        //INSERT API LOG IN AUTHENTICATION CALL
+        const valid = verifyLogin(loginInfo);
+        
+        if (valid) {
+            navigate(twoFactorAuthLink, { 
+				state: { 
+					notificationMessage : "Log In Details Correct",
+					notificationType : "success",
+					notificationPresent : true,
+				}
+			});
+        } else {
+            onFinishFailed(navigate);
+            return false
+        }
+    
+    };
     
     return (
         <Form 
@@ -48,13 +55,8 @@ function LoginForm() {
             initialValues={{
             remember: true,
             }}
-            onFinish={(val) => {
-                    if (onFinish(val)) {
-                        setRedirectLanding(true);
-                    }
-                }
-            }
-            onFinishFailed={onFinishFailed}
+            onFinish={() => {onFinish(navigate)}}
+            onFinishFailed={() => onFinishFailed(navigate)}
             autoComplete="off"
         >
             <Form.Item

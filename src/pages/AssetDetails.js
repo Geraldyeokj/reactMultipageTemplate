@@ -7,8 +7,10 @@ import { authenticationSimulator } from "../util/Authentication/authenticationSi
 import { getAssetInfoByUID } from "../util/getAssetInfoByUID";
 import AssetTransferForm from "../components/Assets/AssetTransferForm";
 import { getClientHoldingsByID } from "../util/getClientHoldingsByID";
+import { Button } from "antd";
+import TransactionHistory from "../components/AssetDetails/TransactionHistory";
 
-const AssetTransfer = () => {
+const AssetDetails = (props) => {
 	const navigate = useNavigate();
     const loggedIn = authenticationSimulator();
     const params = useParams();
@@ -21,6 +23,10 @@ const AssetTransfer = () => {
 	console.log("client holdings", clientHoldings);
 	const filteredHoldings = clientHoldings.filter((ele) => { return ele.id === params.id })
 	console.log("filtered holdings", filteredHoldings);
+
+    function transferAsset(nav, assetId) {
+        nav("../../assetTransfer/" + params.id);
+    }
 
     useEffect(() => {
         console.log("useEffect start", loggedIn)
@@ -41,30 +47,31 @@ const AssetTransfer = () => {
 			{loggedIn ?
 			<div className='flex flex-col justify-center'>
 				<div className='flex flex-col justify-center items-center py-10'>
-					<Title title={`Transfer ${assetInfo.name}`} moreClasses="text-center"/>
+					<Title title={`${assetInfo.name}`} moreClasses="text-center"/>
 					<div className="flex flex-col justify-center items-center w-full">
-						<div className="grid grid-cols-3 py-3 px-3 my-3 rounded-md border-2 sm:w-9/12 md:w-2/6 lg:w-1/4 w-1/2">
-							<div className="mr-3 col-span-2 text-right sm:text-base md:text-lg text-lg">
-								Quantity Available:
+                        <div className="grid grid-cols-2 py-3 px-3 my-3 sm:w-9/12 md:w-2/6 lg:w-1/4 w-1/2">
+                            <Button 
+                                type="primary"
+                                className="col-span-1 bg-blue-600 mx-3">
+                                Receive
+                            </Button>
+                            <Button
+                                type="primary"
+                                className="col-span-1 bg-blue-600 mx-3"
+                                onClick={() => {
+                                    transferAsset(navigate, assetInfo.assetId)
+                                }}
+                            >
+                                Transfer
+                            </Button>
+                        </div>
+						<div className="flex flex-col justify-center my-3 sm:w-9/12 md:w-1/2 w-1/2">
+							<div className="text-center col-span-2 sm:text-base md:text-lg text-lg">
+								Transaction History
 							</div>
-							<div className="col-span-1 text-right sm:text-base md:text-lg text-lg">
-								{"" + (filteredHoldings[0].quantity)}
-							</div>
-							<div className="mr-3 col-span-2 text-right sm:text-base md:text-lg text-lg">
-								Price:
-							</div>
-							<div className="col-span-1 text-right sm:text-base md:text-lg text-lg">
-								{"$" + (assetInfo.price).toLocaleString()}
-							</div>
-							<div className="mr-3 col-span-2 text-right sm:text-base md:text-lg text-lg">
-								Total Value:
-							</div>
-							<div className="col-span-1 text-right sm:text-base md:text-lg text-lg">
-								{"$" + (assetInfo.price * filteredHoldings[0].quantity).toLocaleString()}
-							</div>
+                            <TransactionHistory targetAsset={params.id}/>
 						</div>
 					</div>
-					<AssetTransferForm assetToSend={assetInfo.name}/>
 				</div>
 			</div>:
 			<div></div>
@@ -73,4 +80,4 @@ const AssetTransfer = () => {
 	);
 };
 
-export default AssetTransfer;
+export default AssetDetails;
